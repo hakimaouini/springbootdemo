@@ -1,6 +1,7 @@
 package com.hakim.springdemo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -11,9 +12,9 @@ import java.util.Locale;
 @RequestMapping("/api/v1/students")
 public class studentController {
 
-    private StudentService service ;
+    private final StudentService service ;
 
-    public studentController(StudentService service) {
+    public studentController(@Qualifier("DBStudentServices") StudentService service) {
         this.service = service;
     }
     @PostMapping
